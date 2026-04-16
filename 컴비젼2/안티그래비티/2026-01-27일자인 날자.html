@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026년 1월 27일 - 오늘의 조각</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.6);
+            --accent: #a0fe65;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Mesh Gradient Background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 30%, #3b82f6 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, #ec4899 0%, transparent 40%),
+                        radial-gradient(circle at 50% 50%, #8b5cf6 0%, transparent 50%);
+            z-index: -1;
+            filter: blur(80px);
+            animation: moveBg 20s infinite alternate ease-in-out;
+            opacity: 0.4;
+        }
+
+        @keyframes moveBg {
+            0% { transform: translate(-10%, -10%) rotate(0deg); }
+            100% { transform: translate(10%, 10%) rotate(10deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .date-label {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.3s;
+        }
+
+        .main-date {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        .clock-container {
+            margin: 30px 0;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--text-dim);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.7s;
+        }
+
+        .quote-box {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.9s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Interactive Elements */
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        .dot-1 { width: 300px; height: 300px; background: rgba(59, 130, 246, 0.2); top: -100px; left: -100px; }
+        .dot-2 { width: 250px; height: 250px; background: rgba(236, 72, 153, 0.2); bottom: -100px; right: -100px; }
+
+        footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="decoration dot-1"></div>
+    <div class="decoration dot-2"></div>
+
+    <div class="container">
+        <div class="glass-card">
+            <div class="date-label">TUE / JANUARY 2026</div>
+            <h1 class="main-date">2026. 01. 27.</h1>
+            <div class="clock-container" id="clock">
+                00:00:00
+            </div>
+            <div class="quote-box">
+                "시간은 우리가 가진 유일한 자산이며, <br>어떻게 쓰느냐에 따라 우리의 세상이 결정됩니다."
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        DESIGNED BY <span class="highlight">ANTIGRAVITY</span>
+    </footer>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Mouse Move parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const card = document.querySelector('.glass-card');
+            const x = (window.innerWidth / 2 - e.pageX) / 25;
+            const y = (window.innerHeight / 2 - e.pageY) / 25;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+    </script>
+</body>
+</html>
